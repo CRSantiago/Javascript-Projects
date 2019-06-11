@@ -1,0 +1,29 @@
+			h1 {
+			
+				font-size:50px;
+				font-family:'Signika', sans-serif;
+			
+			}
+			
+			body {
+			
+				font-family:'Signika', sans-serif;
+			
+			}
+			
+			
+			#timer {
+			
+				font-weight:bold;
+				font-family:'Signika', sans-serif;
+			}
+	
+			#shape {
+			
+				width:200px;
+				height:200px;
+				background-color:red;
+				display:none;
+				position:relative;
+				
+			}
