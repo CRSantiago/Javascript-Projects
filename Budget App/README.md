@@ -7,16 +7,21 @@ Budget App will Assist with Financial Support during the month.
 
 [place site here]
 
-```bash
-pip install foobar
-```
-
 ## Usage
 
 ```website
 select '+' to add and/or '-' to subtract, from the value
 select the green checkmark in order to add towards Budget
 review given data
+```
+
+## Project Contributors
+```
+Stephanie G.
+Christopher S.
+Peter P.
+Jason K.
+Dominic H.
 ```
 
 ## Contributing
