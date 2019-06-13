@@ -283,8 +283,8 @@ footer.footer {
     background-color: #ccc;
     color: black;
     font-family: 'Teko', sans-serif;
-    height:100px;
-    padding-top:20px;
+    height:150px;
+    position: absolute;
     bottom: 0;
 }
 
@@ -297,8 +297,9 @@ footer div#footerConnect {
     width:33%;
     float:left;
     box-sizing: border-box;
-    padding-left:15px;
+    padding-left:50px;
     font-size: 1.35em;
+    padding-top: 40px;
 }
 footer div#footerContact {
     box-sizing: border-box;
@@ -306,7 +307,7 @@ footer div#footerContact {
     width:33.3%;
     font-size: 1.6em;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 50px;
 }
 
 footer div#footerContact a{
@@ -333,13 +334,12 @@ footer div#footerRight {
     width:33.3%;
     text-align: center;
     font-size: 1.6em;
-    padding-top: 10px;
+    padding-top: 20px;
+    box-sizing: border-box;
 }
 
 footer div#footerRight ul li{
     list-style: none;
-    display: inline-block;
-    padding-left:10px;
 }
 
 footer div#footerRight ul li a{
