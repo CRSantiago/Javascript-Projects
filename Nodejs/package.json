@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-crash-course",
+  "version": "0.0.0",
+  "description": "NodejsCrashCourse",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app",
+        "dev": "nodemon app"
+    },
+  "author": {
+    "name": "Christopher Santiago"
+  },
+  "dependencies": {
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
