@@ -176,6 +176,15 @@ body {
 
 .add__btn:focus { outline: none; }
 
+.submit__btn {
+    margin: 10px;
+    padding:5px;
+    border-radius: 15%;
+    background-image: linear-gradient(#28B9B5, #FF5049);
+    font-family: 'Teko', sans-serif;
+    font-size: 1.2em;
+}
+
 /***** LISTS *****/
 .container {
     width: 1000px;
@@ -278,6 +287,9 @@ h2 {
 .unpaid:hover .item__description { font-weight: 900; }
 
 
+/****************************************
+*** Footer 
+*****************************************/
 /* domH </> */
 footer.footer {
     width: 100%;
@@ -291,12 +303,7 @@ footer.footer {
     padding: 1rem;
 }
 
-/*#footerAppSign {*/
-/*!*position: inherit;*!*/
-/*!*padding: inherit;*!*/
-/*!*text-align: left;*!*/
-/*}*/
-footer div#footerConnect {
+div#footerConnect {
     width:33%;
     float:left;
     box-sizing: border-box;

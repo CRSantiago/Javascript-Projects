@@ -158,6 +158,28 @@ var budgetController = (function(){
          };  
        },
        
+       // --- Local Storage stuff ---
+        storeData: function() {
+            localStorage.setItem('data', JSON.stringify(data));
+        },
+
+        deleteData: function() {
+            localStorage.removeItem('data');
+        },
+
+        getStoredData: function() {
+            localData = JSON.parse(localStorage.getItem('data'));
+            return localData;
+        },
+        
+        updateData: function(StoredData) {
+            data.totals = StoredData.totals;
+            data.budget = StoredData.budget;
+            data.percentage = StoredData.percentage;
+            
+        },
+        // --- Local Storage stuff END ---
+       
        testing: function(){
            console.log(data);
        }
@@ -183,7 +205,8 @@ var UIController = (function(){
         percentageLabel: '.budget__expenses--percentage',
         container: '.container',
         expensesPercLabel: '.item__percentage',
-        dateLabel: '.budget__title--month'
+        dateLabel: '.budget__title--month',
+        submitBtn: '.submit__btn'
     };
     
        var formatNumber = function(num, type) {
@@ -368,7 +391,53 @@ var controller = (function(budgetCtrl, UICtrl){
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
         document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changedType);
         
+        //send data to database
+        document.querySelector(DOM.submitBtn).addEventListener('click', function() {
+            var storedData = budgetCtrl.getStoredData();
+           axios.post('http://localhost:5000/post', {
+               data: storedData
+           }) 
+            .then(function(res) {
+               console.log('data was sent')
+           })
+            .catch(function(err) {
+              console.log(err); 
+           });
+        });
+        
     };  
+    
+    var loadData = function() {
+        
+        var storedData, newIncItem, newExpItem;
+
+        // 1. load the data from the local storage
+        storedData = budgetCtrl.getStoredData();
+
+        if(storedData){
+            // 2. insert the data into the data structure
+            budgetCtrl.updateData(storedData);
+
+            // 3. Create the Income Object
+            storedData.allItems.inc.forEach(function(cur){
+                newIncItem = budgetCtrl.addItem('inc', cur.description, cur.value)
+                UICtrl.addListItem(newIncItem, 'inc');
+            });           
+
+            // 4. Create the Expense Objects
+            storedData.allItems.exp.forEach(function(cur){
+                newExpItem = budgetCtrl.addItem('exp', cur.description, cur.value)
+                UICtrl.addListItem(newExpItem, 'exp');
+            });
+
+            // 5. Display the Budget
+            budget = budgetCtrl.getBudget();
+            UICtrl.displayBudget(budget);
+
+            // 6. Display the Percentages
+            updatePercentages();
+        }
+    };
     
     var updatePercentages = function(){
       //calculate percentage
@@ -415,6 +484,9 @@ var controller = (function(budgetCtrl, UICtrl){
             
             //6. calculate and update percentages
             updatePercentages();
+            
+            //7. save to local storage 
+            budgetCtrl.storeData();
         }
     }
     
@@ -440,6 +512,9 @@ var controller = (function(budgetCtrl, UICtrl){
             
             //4. calculate and update percentages
             updatePercentages();
+            
+            //5. save to local storage
+            budgetCtrl.storeData();
         }
     };
     
@@ -456,6 +531,7 @@ var controller = (function(budgetCtrl, UICtrl){
 
              });
             setupEventListeners();
+            loadData();
         }
     }
     
